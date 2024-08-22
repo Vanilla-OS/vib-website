@@ -21,8 +21,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-
     - name: Set up Node.js
       uses: actions/setup-node@v4
 
@@ -32,17 +30,15 @@ jobs:
         version: latest
 
     - name: Install Dependencies
-      working-directory: docs/website
       run: pnpm install
 
     - name: Build
-      working-directory: docs/website
       run: pnpm build
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: docs/website/dist
+        path: dist
 
     - name: Deploy
       id: deployment
